@@ -5,7 +5,7 @@ const ProductsPage = () => {
   return (
     <div>
       <Header title="Products" />
-      <Link href={"/products/create"}>Create product</Link>
+      <Link href={"/dashboard/products/create"}>Create product</Link>
     </div>
   );
 };

@@ -7,41 +7,56 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-type Props = {
-  title: string;
-};
-
-const CustomBreadcrumb = ({ title }: Props) => {
+const CustomBreadcrumb = () => {
   const pathname = usePathname();
   const pathnames = pathname.split("/").filter((x) => x);
   return (
     <Breadcrumb>
       <BreadcrumbList>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        {pathnames?.slice(0, pathnames.length - 1).map((value, index) => {
+        {pathnames?.map((value, index) => {
           const to = `/${pathnames.slice(0, index + 1).join("/")}`;
           return (
-            <BreadcrumbList key={to}>
-              <BreadcrumbItem>
-                <BreadcrumbLink href={to}>
-                  {value.charAt(0).toUpperCase() + value.slice(1)}
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-            </BreadcrumbList>
+            <Item
+              key={to}
+              isLast={index === pathnames.length - 1}
+              value={value}
+              to={to}
+            />
           );
         })}
-        <BreadcrumbItem>
-          <BreadcrumbPage>{title}</BreadcrumbPage>
-        </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
+  );
+};
+
+const Item = ({
+  value,
+  isLast,
+  to,
+}: {
+  value: any;
+  isLast: boolean;
+  to: string;
+}) => {
+  return (
+    <>
+      <BreadcrumbItem key={to}>
+        {isLast ? (
+          <BreadcrumbPage>
+            {value.charAt(0).toUpperCase() + value.slice(1)}
+          </BreadcrumbPage>
+        ) : (
+          <>
+            <BreadcrumbLink href={to}>
+              {value.charAt(0).toUpperCase() + value.slice(1)}
+            </BreadcrumbLink>
+          </>
+        )}
+      </BreadcrumbItem>
+      {!isLast && <BreadcrumbSeparator />}
+    </>
   );
 };
 

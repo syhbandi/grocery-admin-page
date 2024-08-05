@@ -13,27 +13,27 @@ export interface MenuInterface {
 
 export const menus: MenuInterface[] = [
   {
-    href: "/",
+    href: "/dashboard",
     title: "Dashboard",
     icon: <AiOutlineDashboard className="text-2xl" />,
   },
   {
-    href: "/products",
+    href: "/dashboard/products",
     title: "Products",
     icon: <AiOutlineProduct className="text-2xl" />,
   },
   {
-    href: "/categories",
+    href: "/dashboard/categories",
     title: "Categories",
     icon: <BiCategory className="text-2xl" />,
   },
   {
-    href: "/orders",
+    href: "/dashboard/orders",
     title: "Orders",
     icon: <FiShoppingBag className="text-2xl" />,
   },
   {
-    href: "/users",
+    href: "/dashboard/users",
     title: "Users",
     icon: <AiOutlineUser className="text-2xl" />,
   },
