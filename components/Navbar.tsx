@@ -1,6 +1,8 @@
+import { auth } from "@/auth";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-const Navbar = () => {
+const Navbar = async () => {
+  const session = await auth();
   return (
     <div className="flex items-center px-10 py-4 bg-white shadow shadow-neutral-200">
       <div className="ml-auto flex items-center gap-3">
@@ -9,9 +11,11 @@ const Navbar = () => {
           <AvatarFallback>A</AvatarFallback>
         </Avatar>
         <div>
-          <div className="text-primary font-medium">Administrator</div>
+          <div className="text-primary font-medium">
+            {session?.user?.username}
+          </div>
           <div className="text-sm text-secondary-foreground">
-            admin@gmail.com
+            {session?.user?.email}
           </div>
         </div>
       </div>
