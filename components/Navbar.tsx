@@ -12,11 +12,9 @@ const Navbar = async () => {
         </Avatar>
         <div>
           <div className="text-primary font-medium">
-            {session?.user?.username}
+            {session?.user?.full_name}
           </div>
-          <div className="text-sm text-secondary-foreground">
-            {session?.user?.email}
-          </div>
+          <div className="text-sm text-neutral-400">{session?.user?.role}</div>
         </div>
       </div>
     </div>

@@ -45,6 +45,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (user) {
         token.id = user.id!;
         token.username = user.username;
+        token.full_name = user.full_name!;
         token.email = user.email!;
         token.role = user.role;
         token.token = user.token!;
@@ -52,8 +53,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return token;
     },
     session: ({ session, token }) => {
-      session.user.username = token.username;
       session.user.id = token.id;
+      session.user.username = token.username;
+      session.user.full_name = token.full_name;
       session.user.email = token.email;
       session.user.role = token.role;
       session.user.token = token.token;
@@ -71,12 +73,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 declare module "next-auth" {
   interface User {
     username: string;
+    full_name: string;
     role: string;
     token: string;
   }
 
   interface Session {
     username: string;
+    full_name: string;
     email: string;
     token: string;
   }
@@ -90,6 +94,7 @@ declare module "next-auth/jwt" {
     /** OpenID ID Token */
     id: string;
     username: string;
+    full_name: string;
     email: string;
     role: string;
     token: string;
