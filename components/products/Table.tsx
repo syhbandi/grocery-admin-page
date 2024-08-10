@@ -13,6 +13,7 @@ import Link from "next/link";
 import { FiDelete, FiEdit2, FiTrash } from "react-icons/fi";
 import CustomPagination from "../Pagination";
 import DeleteProductButton from "./DeleteButton";
+import { currencyFormat, numberFormat } from "@/lib/utils";
 
 type Props = {
   page?: string;
@@ -76,8 +77,8 @@ const ProductsTable = async ({ page, size, search }: Props) => {
                     1}
                 </TableCell>
                 <TableCell>{product.name}</TableCell>
-                <TableCell>{product.price}</TableCell>
-                <TableCell>{product.stock}</TableCell>
+                <TableCell>{currencyFormat(product.price)}</TableCell>
+                <TableCell>{numberFormat(product.stock)}</TableCell>
                 <TableCell className="space-x-2">
                   <Link href={`/dashboard/products/${product.id}/update`}>
                     <Button size={"icon"} variant={"outline"}>

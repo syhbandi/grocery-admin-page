@@ -37,3 +37,14 @@ export const generatePagination = (currentPage: number, totalPages: number) => {
     totalPages,
   ];
 };
+
+export const currencyFormat = (value: number) => {
+  return new Intl.NumberFormat("id", {
+    style: "currency",
+    currency: "IDR",
+  }).format(value);
+};
+
+export const numberFormat = (value: number) => {
+  return new Intl.NumberFormat("id", { style: "decimal" }).format(value);
+};
