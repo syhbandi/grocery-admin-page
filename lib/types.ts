@@ -1,8 +1,23 @@
-type User = {
+export type User = {
   id: string;
   username: string;
   full_name: string;
   email: string;
   image: string;
   role: string;
+};
+
+export type Product = {
+  id: string;
+  name: string;
+  price: number;
+  stock: number;
+  image: string;
+  categories: Category[];
+};
+
+export type Category = {
+  id: string;
+  name: string;
+  image: string;
 };
