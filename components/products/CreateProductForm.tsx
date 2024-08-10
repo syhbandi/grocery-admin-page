@@ -2,7 +2,6 @@
 
 import { createProduct } from "@/actions/ProductActions";
 import BackButton from "@/components/BackButton";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Form,
@@ -15,10 +14,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import SubmitButton from "../SubmitButton";
+import { useToast } from "../ui/use-toast";
 
 const schema = z.object({
   name: z.string().min(1, "Name Required"),
@@ -44,12 +44,18 @@ const CreateProductForm = () => {
     },
   });
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
+  const { toast } = useToast();
 
   const handleSubmit = async (e: z.infer<typeof schema>) => {
     setLoading(true);
     try {
       await createProduct(e);
+      toast({
+        title: "Success!",
+        description: "New Product added",
+        className: "bg-green-500 text-white",
+        duration: 2000,
+      });
     } catch (error) {
       setLoading(false);
       console.log(error);
@@ -123,9 +129,7 @@ const CreateProductForm = () => {
               )}
             />
             <div className="flex items-center space-x-3">
-              <Button type="submit" disabled={loading}>
-                {loading ? "Process" : "Submit"}
-              </Button>
+              <SubmitButton text="Submit" loading={loading} />
               <BackButton />
             </div>
           </form>

@@ -14,6 +14,6 @@ export async function createProduct(formData: any) {
     },
     body: JSON.stringify(formData),
   });
-  revalidatePath("/products");
-  redirect("/products");
+  revalidatePath("/dashboard/products");
+  redirect("/dashboard/products");
 }
