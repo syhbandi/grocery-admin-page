@@ -11,8 +11,10 @@ const SideBarMenu = ({ menu }: { menu: MenuInterface }) => {
     <Link
       href={menu.href}
       className={cn(
-        pathname === menu.href ? "bg-green-700 text-white" : "text-neutral-800",
-        `flex gap-4 items-center hover:bg-green-700 hover:text-white px-4 py-3 rounded-lg font-medium`
+        pathname === menu.href
+          ? "bg-primary text-primary-foreground"
+          : "text-secondary-foreground",
+        `flex gap-4 items-center hover:bg-primary hover:text-primary-foreground px-4 py-3 rounded-lg`
       )}
     >
       {menu.icon}

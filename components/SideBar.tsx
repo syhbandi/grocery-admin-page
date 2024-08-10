@@ -23,7 +23,7 @@ const SideBar = () => {
         >
           <button
             type="submit"
-            className="flex gap-4 items-center hover:bg-green-700 hover:text-white px-4 py-3 rounded-lg font-medium w-full text-neutral-800"
+            className="flex gap-4 items-center hover:bg-primary hover:text-primary-foreground px-4 py-3 rounded-lg font-medium w-full text-secondary-foreground"
           >
             <FiLogOut className="text-2xl" />
             Sign Out
