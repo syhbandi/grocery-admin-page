@@ -6,8 +6,10 @@ type Props = {
 
 const Header = ({ title }: Props) => {
   return (
-    <div className="flex items-center justify-between">
-      <h1 className="text-2xl text-primary font-semibold">{title}</h1>
+    <div className="flex items-center justify-between mb-5">
+      <h1 className="text-2xl text-secondary-foreground font-semibold">
+        {title}
+      </h1>
       <CustomBreadcrumb />
     </div>
   );
