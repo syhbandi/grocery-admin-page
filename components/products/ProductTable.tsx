@@ -9,6 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import Link from "next/link";
+import { FiEdit2 } from "react-icons/fi";
 
 interface Data {
   id: string;
@@ -39,7 +40,9 @@ const ProductTable = ({ data }: { data: Data[] }) => {
             <TableCell>{product.stock}</TableCell>
             <TableCell>
               <Link href={`/dashboard/products/${product.id}/update`}>
-                <Button variant={"destructive"}>Edit</Button>
+                <Button variant={"ghost"}>
+                  <FiEdit2 />
+                </Button>
               </Link>
             </TableCell>
           </TableRow>
