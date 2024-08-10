@@ -31,3 +31,16 @@ export async function updateProduct(id: string, formData: any) {
   revalidatePath("/dashboard/products");
   redirect("/dashboard/products");
 }
+
+export async function deleteProduct(id: string) {
+  const session = await auth();
+  await fetch(`${process.env.API_URL}/products/${id}`, {
+    method: "delete",
+    headers: {
+      Authorization: `Bearer ${session?.user?.token}`,
+      "Content-Type": "application/json",
+    },
+  });
+  revalidatePath("/dashboard/products");
+  redirect("/dashboard/products");
+}

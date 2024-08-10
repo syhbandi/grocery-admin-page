@@ -10,8 +10,9 @@ import {
 } from "@/components/ui/table";
 import { Product } from "@/lib/types";
 import Link from "next/link";
-import { FiEdit2 } from "react-icons/fi";
+import { FiDelete, FiEdit2, FiTrash } from "react-icons/fi";
 import CustomPagination from "../Pagination";
+import DeleteProductButton from "./DeleteButton";
 
 type Props = {
   page?: string;
@@ -24,6 +25,7 @@ type Response = {
   meta: {
     per_page: number;
     total: number;
+    current_page: number;
   };
 };
 
@@ -56,7 +58,7 @@ const ProductsTable = async ({ page, size, search }: Props) => {
       <Table className="border border-neutral-200">
         <TableHeader>
           <TableRow>
-            <TableHead>ID</TableHead>
+            <TableHead>#</TableHead>
             <TableHead>Name</TableHead>
             <TableHead>Price</TableHead>
             <TableHead>Stock</TableHead>
@@ -65,18 +67,24 @@ const ProductsTable = async ({ page, size, search }: Props) => {
         </TableHeader>
         <TableBody>
           {data.data.length ? (
-            data.data.map((product) => (
+            data.data.map((product, index) => (
               <TableRow key={product.id}>
-                <TableCell>{product.id}</TableCell>
+                <TableCell>
+                  {data.meta.current_page * data.meta.per_page -
+                    data.meta.per_page +
+                    index +
+                    1}
+                </TableCell>
                 <TableCell>{product.name}</TableCell>
                 <TableCell>{product.price}</TableCell>
                 <TableCell>{product.stock}</TableCell>
-                <TableCell>
+                <TableCell className="space-x-2">
                   <Link href={`/dashboard/products/${product.id}/update`}>
-                    <Button variant={"ghost"}>
+                    <Button size={"icon"} variant={"outline"}>
                       <FiEdit2 />
                     </Button>
                   </Link>
+                  <DeleteProductButton id={product.id} />
                 </TableCell>
               </TableRow>
             ))
