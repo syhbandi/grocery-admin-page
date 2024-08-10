@@ -26,6 +26,7 @@ const Search = ({ placeholder }: Props) => {
       <input
         id="search"
         name="search"
+        type="search"
         className="outline-none flex-1 peer"
         onChange={(e) => handleSearch(e.target.value)}
         placeholder={placeholder}
