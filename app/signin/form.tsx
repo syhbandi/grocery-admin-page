@@ -1,5 +1,6 @@
 "use client";
 import SubmitButton from "@/components/SubmitButton";
+import { Alert } from "@/components/ui/alert";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { authenticate } from "@/lib/actions";
@@ -14,14 +15,21 @@ const SignInForm = () => {
         <p className="text-neutral-800 mb-5 text-center">
           Please Sign in to use app
         </p>
-        {error && JSON.stringify(error)}
         <form action={action} className="flex flex-col space-y-2">
-          <Input type="email" name="email" id="email" placeholder="Email" />
+          {error && <Alert variant={"destructive"}>{error}</Alert>}
+          <Input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+            required
+          />
           <Input
             type="password"
             name="password"
             id="password"
             placeholder="Password"
+            required
           />
           <SubmitButton text="Sign In" />
         </form>
