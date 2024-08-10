@@ -10,7 +10,7 @@ import {
   TableRow,
 } from "../ui/table";
 
-export const TableSkeleton = () => {
+export const ProductsTableSkeleton = () => {
   return (
     <Table className="border border-neutral-200">
       <TableHeader>
