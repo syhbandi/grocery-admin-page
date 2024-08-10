@@ -1,27 +1,42 @@
 import NextAuth from "next-auth";
 import credentials from "next-auth/providers/credentials";
+import { JWT } from "next-auth/jwt";
+
+const fetchUser = async ({
+  email,
+  password,
+}: {
+  email: string | any;
+  password: string | any;
+}): Promise<{ user: User; token: string }> => {
+  try {
+    const res = await fetch(`${process.env.API_URL}/user/login`, {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+
+    return await res.json();
+  } catch (error) {
+    console.error("Failed to fetch user:", error);
+    throw new Error("Invalid Credentials");
+  }
+};
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     credentials({
-      credentials: {
-        email: { type: "email", name: "email" },
-        password: { type: "password", name: "password" },
-      },
       authorize: async (credentials) => {
-        const res = await fetch(`${process.env.API_URL}/user/login`, {
-          method: "post",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            email: credentials.email,
-            password: credentials.password,
-          }),
+        const user = await fetchUser({
+          email: credentials.email,
+          password: credentials.password,
         });
 
-        const user = await res.json();
-        console.log("user logged" + user);
-
         if (!user || user?.user?.role !== "admin") {
+          console.log("error");
           return null;
         }
 
@@ -64,9 +79,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
     authorized: ({ request, auth }) => {
       const { pathname } = request.nextUrl;
-      if (pathname === "/dashboard") return !!auth;
+      if (pathname.startsWith("/dashboard") || pathname === "/signout")
+        return !!auth;
+
       return true;
     },
+  },
+  pages: {
+    signIn: "/signin",
+    signOut: "/signout",
   },
 });
 
@@ -85,8 +106,6 @@ declare module "next-auth" {
     token: string;
   }
 }
-
-import { JWT } from "next-auth/jwt";
 
 declare module "next-auth/jwt" {
   /** Returned by the `jwt` callback and `auth`, when using JWT sessions */
