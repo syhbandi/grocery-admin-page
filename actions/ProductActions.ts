@@ -17,3 +17,17 @@ export async function createProduct(formData: any) {
   revalidatePath("/dashboard/products");
   redirect("/dashboard/products");
 }
+
+export async function updateProduct(id: string, formData: any) {
+  const session = await auth();
+  await fetch(`${process.env.API_URL}/products/${id}`, {
+    method: "put",
+    headers: {
+      Authorization: `Bearer ${session?.user?.token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
+  revalidatePath("/dashboard/products");
+  redirect("/dashboard/products");
+}

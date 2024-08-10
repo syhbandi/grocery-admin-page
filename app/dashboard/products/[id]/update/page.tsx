@@ -1,4 +1,6 @@
 import Header from "@/components/Header";
+import UpdateProductForm from "@/components/products/Update-form";
+import { Card } from "@/components/ui/card";
 import { Product } from "@/lib/types";
 
 type Props = {
@@ -11,6 +13,7 @@ const getProduct = async (id: string): Promise<{ data: Product }> => {
   try {
     const res = await fetch(`${process.env.API_URL}/products/${id}`, {
       method: "get",
+      cache: "no-store",
     });
     return await res.json();
   } catch (error) {
@@ -23,7 +26,10 @@ const UpdateProductPage = async ({ params }: Props) => {
   return (
     <>
       <Header title="Update Product" />
-      {JSON.stringify(data.data.id)}
+      <Card className="p-6 w-full lg:w-1/2">
+        <UpdateProductForm product={data.data} />
+      </Card>
+      {JSON.stringify(data)}
     </>
   );
 };
