@@ -1,4 +1,4 @@
-import CreateProductForm from "@/components/common/forms/CreateProductForm";
+import CreateProductForm from "@/components/products/CreateProductForm";
 import Header from "@/components/Header";
 
 const CreateProductPage = () => {

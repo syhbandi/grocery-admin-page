@@ -1,6 +1,7 @@
 "use client";
 
 import { createProduct } from "@/actions/ProductActions";
+import BackButton from "@/components/BackButton";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -49,7 +50,6 @@ const CreateProductForm = () => {
     setLoading(true);
     try {
       await createProduct(e);
-      router.back();
     } catch (error) {
       setLoading(false);
       console.log(error);
@@ -122,9 +122,12 @@ const CreateProductForm = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit" disabled={loading}>
-              {loading ? "Process" : "Submit"}
-            </Button>
+            <div className="flex items-center space-x-3">
+              <Button type="submit" disabled={loading}>
+                {loading ? "Process" : "Submit"}
+              </Button>
+              <BackButton />
+            </div>
           </form>
         </Form>
       </CardContent>

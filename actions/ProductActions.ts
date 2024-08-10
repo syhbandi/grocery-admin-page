@@ -2,6 +2,7 @@
 
 import { auth } from "@/auth";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export async function createProduct(formData: any) {
   const session = await auth();
@@ -14,4 +15,5 @@ export async function createProduct(formData: any) {
     body: JSON.stringify(formData),
   });
   revalidatePath("/products");
+  redirect("/products");
 }

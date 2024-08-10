@@ -2,6 +2,8 @@ import { menus } from "@/constants/sidebarMenu";
 import Link from "next/link";
 import SideBarMenu from "./SideBarMenu";
 import { FiLogOut } from "react-icons/fi";
+import { signOut } from "@/auth";
+import { doSignOut } from "@/lib/actions";
 
 const SideBar = () => {
   return (
@@ -13,13 +15,20 @@ const SideBar = () => {
         {menus.map((menu, index) => (
           <SideBarMenu menu={menu} key={index} />
         ))}
-        <Link
-          href={"/api/auth/signout"}
-          className="w-full flex gap-4 items-center hover:bg-green-700 hover:text-white px-4 py-3 rounded-lg font-medium text-neutral-800"
+        <form
+          action={async () => {
+            "use server";
+            await doSignOut();
+          }}
         >
-          <FiLogOut className="text-xl" />
-          Sign Out
-        </Link>
+          <button
+            type="submit"
+            className="flex gap-4 items-center hover:bg-green-700 hover:text-white px-4 py-3 rounded-lg font-medium w-full text-neutral-800"
+          >
+            <FiLogOut className="text-2xl" />
+            Sign Out
+          </button>
+        </form>
       </div>
     </div>
   );
