@@ -64,6 +64,7 @@ const ProductsTable = async ({ page, size, search }: Props) => {
             <TableHead>Categories</TableHead>
             <TableHead>Price</TableHead>
             <TableHead>Stock</TableHead>
+            <TableHead>Unit</TableHead>
             <TableHead>Actions</TableHead>
           </TableRow>
         </TableHeader>
@@ -94,6 +95,7 @@ const ProductsTable = async ({ page, size, search }: Props) => {
                 </TableCell>
                 <TableCell>{currencyFormat(product.price)}</TableCell>
                 <TableCell>{numberFormat(product.stock)}</TableCell>
+                <TableCell>{product.unit}</TableCell>
                 <TableCell className="space-x-2">
                   <Link href={`/dashboard/products/${product.id}/update`}>
                     <Button size={"icon"} variant={"outline"}>
@@ -106,7 +108,7 @@ const ProductsTable = async ({ page, size, search }: Props) => {
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={6} className="text-center">
+              <TableCell colSpan={7} className="text-center">
                 No data Found
               </TableCell>
             </TableRow>

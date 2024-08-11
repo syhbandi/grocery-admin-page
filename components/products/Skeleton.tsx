@@ -19,6 +19,7 @@ export const ProductsTableSkeleton = () => {
           <TableHead>Name</TableHead>
           <TableHead>Price</TableHead>
           <TableHead>Stock</TableHead>
+          <TableHead>Unit</TableHead>
           <TableHead>Actions</TableHead>
         </TableRow>
       </TableHeader>
@@ -26,6 +27,9 @@ export const ProductsTableSkeleton = () => {
         {Array.from({ length: 10 }, (_, index) => index++).map((value) => (
           <TableRow key={value}>
             <TableCell className="w-[150px]">
+              <Skeleton className="h-[20px] w-full rounded-full bg-secondary" />
+            </TableCell>
+            <TableCell>
               <Skeleton className="h-[20px] w-full rounded-full bg-secondary" />
             </TableCell>
             <TableCell>

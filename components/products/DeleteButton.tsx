@@ -10,8 +10,9 @@ const DeleteProductButton = ({ id }: { id: string }) => {
   const [loading, setloading] = useState(false);
 
   const handleDelete = async () => {
+    setloading(true);
+
     try {
-      setloading(true);
       await deleteProduct(id);
       toast({
         title: "Success!",
@@ -20,12 +21,14 @@ const DeleteProductButton = ({ id }: { id: string }) => {
         variant: "default",
       });
     } catch (error) {
-      toast({
-        title: "Oops!",
-        description: "Failed to delete product",
-        duration: 2000,
-        variant: "destructive",
-      });
+      if (error instanceof Error) {
+        toast({
+          title: "Oops!",
+          description: error.message,
+          duration: 2000,
+          variant: "destructive",
+        });
+      }
     } finally {
       setloading(false);
     }

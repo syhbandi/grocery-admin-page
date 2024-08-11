@@ -27,6 +27,7 @@ type Props = {
 
 const schema = z.object({
   name: z.string().min(1, "Name Required"),
+  unit: z.string().min(1, "Unit Required"),
   description: z.string(),
   price: z.coerce.number({
     required_error: "Price required",
@@ -67,8 +68,15 @@ const UpdateProductForm = ({ product, categories }: Props) => {
         duration: 2000,
       });
     } catch (error) {
-      setLoading(false);
-      console.log(error);
+      if (error instanceof Error) {
+        setLoading(false);
+        toast({
+          title: "Error",
+          description: error.message,
+          duration: 2000,
+          variant: "destructive",
+        });
+      }
     } finally {
       setLoading(false);
     }
@@ -125,6 +133,19 @@ const UpdateProductForm = ({ product, categories }: Props) => {
               <FormLabel>Stock</FormLabel>
               <FormControl>
                 <Input type="number" placeholder={"Stock"} {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="unit"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Unit</FormLabel>
+              <FormControl>
+                <Input type="number" placeholder={"Unit"} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

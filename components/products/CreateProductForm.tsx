@@ -28,6 +28,7 @@ type Props = {
 
 const schema = z.object({
   name: z.string().min(1, "Name Required"),
+  unit: z.string().min(1, "Unit Required"),
   description: z.string(),
   price: z.coerce.number({
     required_error: "Price required",
@@ -44,10 +45,11 @@ const CreateProductForm = ({ categories }: Props) => {
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
-      description: "",
       name: "",
+      description: "",
       stock: 0,
       price: 0,
+      unit: "",
       categories: [],
     },
   });
@@ -65,14 +67,18 @@ const CreateProductForm = ({ categories }: Props) => {
       toast({
         title: "Success!",
         description: "New Product added",
-        className: "bg-green-500 text-white",
         duration: 2000,
       });
     } catch (error) {
-      setLoading(false);
-      console.log(error);
-    } finally {
-      setLoading(false);
+      if (error instanceof Error) {
+        setLoading(false);
+        toast({
+          title: "Oops!",
+          description: error?.message,
+          duration: 2000,
+          variant: "destructive",
+        });
+      }
     }
   };
 
@@ -135,6 +141,19 @@ const CreateProductForm = ({ categories }: Props) => {
                   <FormLabel>Stock</FormLabel>
                   <FormControl>
                     <Input type="number" placeholder={"Stock"} {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="unit"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Unit</FormLabel>
+                  <FormControl>
+                    <Input type="text" placeholder={"Unit"} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
