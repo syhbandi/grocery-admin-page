@@ -66,9 +66,9 @@ const CategoriesTable = async ({ page, search, size }: Props) => {
               <TableRow key={category.id}>
                 <TableCell>{category.id}</TableCell>
                 <TableCell>{category.name}</TableCell>
-                <TableCell>
+                <TableCell className="space-x-2">
                   <Link href={`/dashboard/categories/${category.id}/update`}>
-                    <Button variant={"ghost"} size={"sm"}>
+                    <Button size={"icon"} variant={"outline"}>
                       <FiEdit2 />
                     </Button>
                   </Link>
