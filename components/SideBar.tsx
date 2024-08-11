@@ -1,8 +1,6 @@
 import { menus } from "@/constants/sidebarMenu";
-import Link from "next/link";
 import SideBarMenu from "./SideBarMenu";
 import { FiLogOut } from "react-icons/fi";
-import { signOut } from "@/auth";
 import { doSignOut } from "@/lib/actions";
 
 const SideBar = () => {
@@ -23,7 +21,7 @@ const SideBar = () => {
         >
           <button
             type="submit"
-            className="flex gap-4 items-center hover:bg-primary hover:text-primary-foreground px-4 py-3 rounded-lg font-medium w-full text-secondary-foreground"
+            className="flex gap-4 items-center hover:bg-primary hover:text-primary-foreground px-4 py-3 rounded-lg w-full text-secondary-foreground"
           >
             <FiLogOut className="text-2xl" />
             Sign Out

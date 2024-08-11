@@ -13,7 +13,7 @@ import Link from "next/link";
 import { FiDelete, FiEdit2, FiTrash } from "react-icons/fi";
 import CustomPagination from "../Pagination";
 import DeleteProductButton from "./DeleteButton";
-import { currencyFormat, numberFormat } from "@/lib/utils";
+import { currencyFormat, getRowNumber, numberFormat } from "@/lib/utils";
 
 type Props = {
   page?: string;
@@ -71,10 +71,11 @@ const ProductsTable = async ({ page, size, search }: Props) => {
             data.data.map((product, index) => (
               <TableRow key={product.id}>
                 <TableCell>
-                  {data.meta.current_page * data.meta.per_page -
-                    data.meta.per_page +
-                    index +
-                    1}
+                  {getRowNumber(
+                    data.meta.current_page,
+                    data.meta.per_page,
+                    index
+                  )}
                 </TableCell>
                 <TableCell>{product.name}</TableCell>
                 <TableCell>{currencyFormat(product.price)}</TableCell>

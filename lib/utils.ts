@@ -48,3 +48,9 @@ export const currencyFormat = (value: number) => {
 export const numberFormat = (value: number) => {
   return new Intl.NumberFormat("id", { style: "decimal" }).format(value);
 };
+
+export const getRowNumber = (
+  currentPage: number,
+  perPage: number,
+  index: number
+) => currentPage * perPage - perPage + index + 1;

@@ -11,6 +11,7 @@ import CustomPagination from "../Pagination";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { FiEdit2 } from "react-icons/fi";
+import { getRowNumber } from "@/lib/utils";
 
 type Props = {
   page?: string;
@@ -21,6 +22,7 @@ type Props = {
 type Response = {
   data: Category[];
   meta: {
+    current_page: number;
     per_page: number;
     total: number;
   };
@@ -62,9 +64,15 @@ const CategoriesTable = async ({ page, search, size }: Props) => {
         </TableHeader>
         <TableBody>
           {data.data.length ? (
-            data.data.map((category) => (
+            data.data.map((category, index) => (
               <TableRow key={category.id}>
-                <TableCell>{category.id}</TableCell>
+                <TableCell>
+                  {getRowNumber(
+                    data.meta.current_page,
+                    data.meta.per_page,
+                    index
+                  )}
+                </TableCell>
                 <TableCell>{category.name}</TableCell>
                 <TableCell className="space-x-2">
                   <Link href={`/dashboard/categories/${category.id}/update`}>
