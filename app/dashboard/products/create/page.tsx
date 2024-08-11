@@ -1,4 +1,4 @@
-import CreateProductForm from "@/components/products/CreateProductForm";
+import CreateProductForm from "@/components/products/Create-form";
 import Header from "@/components/Header";
 import { Category } from "@/lib/types";
 

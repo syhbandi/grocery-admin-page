@@ -64,7 +64,6 @@ const UpdateProductForm = ({ product, categories }: Props) => {
       toast({
         title: "Success!",
         description: "Product updated",
-        className: "bg-primary text-primary-foreground",
         duration: 2000,
       });
     } catch (error) {
@@ -145,7 +144,7 @@ const UpdateProductForm = ({ product, categories }: Props) => {
             <FormItem>
               <FormLabel>Unit</FormLabel>
               <FormControl>
-                <Input type="number" placeholder={"Unit"} {...field} />
+                <Input type="text" placeholder={"Unit"} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
