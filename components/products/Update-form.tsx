@@ -1,5 +1,5 @@
 "use client";
-import { Product } from "@/lib/types";
+import { Category, Product } from "@/lib/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -18,9 +18,11 @@ import { Textarea } from "../ui/textarea";
 import SubmitButton from "../SubmitButton";
 import BackButton from "../BackButton";
 import { updateProduct } from "@/actions/ProductActions";
+import SelectCategory from "./SelectCategory";
 
 type Props = {
   product: Product;
+  categories: Category[];
 };
 
 const schema = z.object({
@@ -34,17 +36,23 @@ const schema = z.object({
     required_error: "Stock required",
     invalid_type_error: "Invalid Stock",
   }),
+  categories: z.coerce.number().array(),
 });
 
-const UpdateProductForm = ({ product }: Props) => {
+const UpdateProductForm = ({ product, categories }: Props) => {
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
       ...product,
       description: product.description ?? "",
+      categories: product.categories.map((category) => Number(category.id)),
     },
   });
 
+  const categoryOptions = categories.map((category) => ({
+    label: category.name,
+    value: category.id,
+  }));
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
 
@@ -121,6 +129,11 @@ const UpdateProductForm = ({ product }: Props) => {
               <FormMessage />
             </FormItem>
           )}
+        />
+        <SelectCategory
+          options={categoryOptions}
+          name="categories"
+          placeholder="Select Categories"
         />
         <div className="flex items-center space-x-3">
           <SubmitButton text="Submit" loading={loading} />

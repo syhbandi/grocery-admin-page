@@ -19,6 +19,7 @@ export async function createProduct(formData: any) {
 }
 
 export async function updateProduct(id: string, formData: any) {
+  console.log(JSON.stringify(formData));
   const session = await auth();
   await fetch(`${process.env.API_URL}/products/${id}`, {
     method: "put",

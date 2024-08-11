@@ -19,6 +19,12 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import SubmitButton from "../SubmitButton";
 import { useToast } from "../ui/use-toast";
+import SelectCategory from "./SelectCategory";
+import { Category } from "@/lib/types";
+
+type Props = {
+  categories: Category[];
+};
 
 const schema = z.object({
   name: z.string().min(1, "Name Required"),
@@ -31,9 +37,10 @@ const schema = z.object({
     required_error: "Stock required",
     invalid_type_error: "Invalid Stock",
   }),
+  categories: z.coerce.number().array(),
 });
 
-const CreateProductForm = () => {
+const CreateProductForm = ({ categories }: Props) => {
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -41,8 +48,13 @@ const CreateProductForm = () => {
       name: "",
       stock: 0,
       price: 0,
+      categories: [],
     },
   });
+  const categoryOptions = categories.map((category) => ({
+    label: category.name,
+    value: category.id,
+  }));
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
 
@@ -127,6 +139,11 @@ const CreateProductForm = () => {
                   <FormMessage />
                 </FormItem>
               )}
+            />
+            <SelectCategory
+              name="categories"
+              options={categoryOptions}
+              placeholder="Select Categories"
             />
             <div className="flex items-center space-x-3">
               <SubmitButton text="Submit" loading={loading} />

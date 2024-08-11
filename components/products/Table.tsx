@@ -61,6 +61,7 @@ const ProductsTable = async ({ page, size, search }: Props) => {
           <TableRow>
             <TableHead>#</TableHead>
             <TableHead>Name</TableHead>
+            <TableHead>Categories</TableHead>
             <TableHead>Price</TableHead>
             <TableHead>Stock</TableHead>
             <TableHead>Actions</TableHead>
@@ -78,6 +79,19 @@ const ProductsTable = async ({ page, size, search }: Props) => {
                   )}
                 </TableCell>
                 <TableCell>{product.name}</TableCell>
+                <TableCell className="space-x-2">
+                  {product.categories.slice(0, 2).map((categoy) => (
+                    <span
+                      key={categoy.id}
+                      className="p-1 rounded-lg border border-neutral-300"
+                    >
+                      {categoy.name}
+                    </span>
+                  ))}
+                  {product.categories.length > 2 && (
+                    <> and {product.categories.length - 2} more</>
+                  )}
+                </TableCell>
                 <TableCell>{currencyFormat(product.price)}</TableCell>
                 <TableCell>{numberFormat(product.stock)}</TableCell>
                 <TableCell className="space-x-2">
@@ -92,7 +106,7 @@ const ProductsTable = async ({ page, size, search }: Props) => {
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={5} className="text-center">
+              <TableCell colSpan={6} className="text-center">
                 No data Found
               </TableCell>
             </TableRow>

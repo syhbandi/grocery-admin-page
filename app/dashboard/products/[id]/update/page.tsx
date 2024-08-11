@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import UpdateProductForm from "@/components/products/Update-form";
 import { Card } from "@/components/ui/card";
 import { Product } from "@/lib/types";
+import { getCategories } from "../../create/page";
 
 type Props = {
   params: {
@@ -23,13 +24,13 @@ const getProduct = async (id: string): Promise<{ data: Product }> => {
 
 const UpdateProductPage = async ({ params }: Props) => {
   const data = await getProduct(params.id);
+  const { data: categories } = await getCategories();
   return (
     <>
       <Header title="Update Product" />
       <Card className="p-6 w-full lg:w-1/2">
-        <UpdateProductForm product={data.data} />
+        <UpdateProductForm product={data.data} categories={categories} />
       </Card>
-      {JSON.stringify(data)}
     </>
   );
 };
