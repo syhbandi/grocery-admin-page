@@ -12,6 +12,7 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { FiEdit2 } from "react-icons/fi";
 import { getRowNumber } from "@/lib/utils";
+import DeleteCategoryButton from "./DeleteButton";
 
 type Props = {
   page?: string;
@@ -80,6 +81,7 @@ const CategoriesTable = async ({ page, search, size }: Props) => {
                       <FiEdit2 />
                     </Button>
                   </Link>
+                  <DeleteCategoryButton id={category.id} />
                 </TableCell>
               </TableRow>
             ))

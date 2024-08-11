@@ -32,3 +32,15 @@ export async function updateCategory(id: string, data: any) {
   revalidatePath(PATH);
   redirect(PATH);
 }
+export async function deleteCategory(id: string) {
+  const session = await auth();
+  await fetch(`${process.env.API_URL}/categories/${id}`, {
+    method: "delete",
+    headers: {
+      Authorization: `Bearer ${session?.user?.token}`,
+      "Content-Type": "application/json",
+    },
+  });
+  revalidatePath(PATH);
+  redirect(PATH);
+}
