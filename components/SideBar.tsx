@@ -11,20 +11,6 @@ const SideBar = () => {
         {menus.map((menu, index) => (
           <SideBarMenu menu={menu} key={index} />
         ))}
-        {/* <form
-          action={async () => {
-            "use server";
-            await doSignOut();
-          }}
-        >
-          <button
-            type="submit"
-            className="flex gap-4 items-center hover:bg-primary hover:text-primary-foreground px-4 py-3 rounded-lg w-full text-secondary-foreground"
-          >
-            <FiLogOut className="text-2xl" />
-            Sign Out
-          </button>
-        </form> */}
       </div>
     </div>
   );
