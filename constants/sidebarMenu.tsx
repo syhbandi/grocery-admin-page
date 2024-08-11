@@ -3,7 +3,7 @@ import {
   AiOutlineProduct,
   AiOutlineUser,
 } from "react-icons/ai";
-import { FiShoppingBag } from "react-icons/fi";
+import { FiLogOut, FiShoppingBag } from "react-icons/fi";
 import { BiCategory } from "react-icons/bi";
 export interface MenuInterface {
   href: string;
@@ -36,5 +36,10 @@ export const menus: MenuInterface[] = [
     href: "/dashboard/users",
     title: "Users",
     icon: <AiOutlineUser className="text-2xl" />,
+  },
+  {
+    href: "/signout",
+    title: "Sign Out",
+    icon: <FiLogOut className="text-2xl" />,
   },
 ];

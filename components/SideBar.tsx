@@ -13,7 +13,7 @@ const SideBar = () => {
         {menus.map((menu, index) => (
           <SideBarMenu menu={menu} key={index} />
         ))}
-        <form
+        {/* <form
           action={async () => {
             "use server";
             await doSignOut();
@@ -26,7 +26,7 @@ const SideBar = () => {
             <FiLogOut className="text-2xl" />
             Sign Out
           </button>
-        </form>
+        </form> */}
       </div>
     </div>
   );
