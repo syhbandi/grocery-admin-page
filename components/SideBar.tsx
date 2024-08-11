@@ -1,7 +1,5 @@
 import { menus } from "@/constants/sidebarMenu";
 import SideBarMenu from "./SideBarMenu";
-import { FiLogOut } from "react-icons/fi";
-import { doSignOut } from "@/lib/actions";
 
 const SideBar = () => {
   return (
