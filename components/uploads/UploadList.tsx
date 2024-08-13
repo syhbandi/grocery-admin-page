@@ -39,7 +39,6 @@ const UploadList = async () => {
                 src={`${process.env.ASSETS_URL}/${data.url}`}
                 fill
                 sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
-                blurDataURL="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOMjo6pBwADvgGTq/xAUwAAAABJRU5ErkJggg=="
                 className="object-contain"
               />
             </div>
