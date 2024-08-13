@@ -1,4 +1,5 @@
 import {
+  AiOutlineCloudUpload,
   AiOutlineDashboard,
   AiOutlineProduct,
   AiOutlineUser,
@@ -36,6 +37,11 @@ export const menus: MenuInterface[] = [
     href: "/dashboard/users",
     title: "Users",
     icon: <AiOutlineUser className="text-2xl" />,
+  },
+  {
+    href: "/dashboard/uploads",
+    title: "Uploads",
+    icon: <AiOutlineCloudUpload className="text-2xl" />,
   },
   {
     href: "/signout",

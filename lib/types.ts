@@ -23,3 +23,8 @@ export type Category = {
   name: string;
   image: string;
 };
+
+export type Upload = {
+  id: string;
+  url: string;
+};
