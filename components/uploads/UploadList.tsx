@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Alert } from "../ui/alert";
 import { Button } from "../ui/button";
 import { FiEye, FiTrash } from "react-icons/fi";
+import DeleteImageButton from "./DeleteButton";
 
 type Response = {
   data: Upload[];
@@ -47,10 +48,7 @@ const UploadList = async () => {
                 <FiEye className="mr-1" />
                 View
               </Button>
-              <Button variant={"destructive"} className="w-1/3">
-                <FiTrash className="mr-1" />
-                Delete
-              </Button>
+              <DeleteImageButton id={data.id} />
             </div>
           </div>
         ))
