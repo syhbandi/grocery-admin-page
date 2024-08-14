@@ -16,12 +16,13 @@ export type Product = {
   unit: string;
   image: string;
   categories: Category[];
+  images: Upload[];
 };
 
 export type Category = {
   id: string;
   name: string;
-  image: string;
+  images: Upload[];
 };
 
 export type Upload = {
