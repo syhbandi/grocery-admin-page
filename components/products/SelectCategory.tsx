@@ -47,7 +47,7 @@ const SelectCategory = ({ name, options, placeholder }: Props) => {
 
   return (
     <FormItem className="flex flex-col">
-      <FormLabel>Language</FormLabel>
+      <FormLabel>Categories</FormLabel>
       <Popover>
         <PopoverTrigger asChild>
           <FormControl>
