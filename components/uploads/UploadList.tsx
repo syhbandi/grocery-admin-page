@@ -44,7 +44,7 @@ const UploadList = async () => {
                 className="object-contain"
               />
             </div>
-            <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center invisible group-hover/item:visible backdrop-blur-sm space-y-2">
+            <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center invisible group-hover/item:visible backdrop-blur-sm backdrop-brightness-75 space-y-2">
               <Link href={`/dashboard/uploads/${data.id}`} className="w-1/3">
                 <Button variant={"secondary"} className="w-full">
                   <FiEye className="mr-1" />

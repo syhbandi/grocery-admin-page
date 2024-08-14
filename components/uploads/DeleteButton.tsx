@@ -43,7 +43,7 @@ const DeleteImageButton = ({ id }: { id: string }) => {
   };
 
   return (
-    <AlertDialog>
+    <AlertDialog open={open}>
       <AlertDialogTrigger asChild>
         <Button
           variant={"destructive"}
