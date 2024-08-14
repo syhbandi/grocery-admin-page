@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { AiFillCloseCircle, AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose } from "react-icons/ai";
 
 const Modal = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
