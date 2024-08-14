@@ -19,6 +19,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const DeleteImageButton = ({ id }: { id: string }) => {
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
   const handleDelete = async () => {
     setLoading(true);
     try {
@@ -44,7 +45,11 @@ const DeleteImageButton = ({ id }: { id: string }) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant={"destructive"} className="w-1/3">
+        <Button
+          variant={"destructive"}
+          className="w-1/3"
+          onClick={() => setOpen(true)}
+        >
           <FiTrash className="mr-1" />
           Delete
         </Button>
@@ -58,7 +63,9 @@ const DeleteImageButton = ({ id }: { id: string }) => {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogCancel onClick={() => setOpen(false)}>
+            Cancel
+          </AlertDialogCancel>
           <AlertDialogAction
             onClick={handleDelete}
             disabled={loading}
