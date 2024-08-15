@@ -1,7 +1,7 @@
 import { auth } from "@/auth";
 import { Upload } from "@/lib/types";
 import Image from "next/image";
-import Modal from "./Modal";
+import Modal from "@/components/Modal";
 
 const getImage = async (id: string): Promise<{ data: Upload }> => {
   try {
