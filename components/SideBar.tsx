@@ -3,7 +3,7 @@ import SideBarMenu from "./SideBarMenu";
 
 const SideBar = () => {
   return (
-    <div className="fixed top-0 left-0 overflow-auto w-64 h-screen bg-neutral-50 shadow-lg shadow-neutral-200">
+    <div className="hidden lg:block fixed top-0 left-0 overflow-auto w-64 h-screen bg-neutral-50 shadow-lg shadow-neutral-200">
       <div className="text-3xl font-semibold text-green-700 text-center py-5">
         Grosir
       </div>
