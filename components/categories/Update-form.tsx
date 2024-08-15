@@ -9,22 +9,28 @@ import { Input } from "../ui/input";
 import SubmitButton from "../SubmitButton";
 import BackButton from "../BackButton";
 import { useState } from "react";
-import { createCategory, updateCategory } from "@/actions/CategoryActions";
+import { updateCategory } from "@/actions/CategoryActions";
 import { toast } from "../ui/use-toast";
-import { Category } from "@/lib/types";
+import { Category, Upload } from "@/lib/types";
+import SelectImages from "../products/SelectImages";
 
 const formSchema = z.object({
   name: z.string().min(1, "Name required"),
+  images: z.coerce.number().array(),
 });
 
 type Props = {
   category: Category;
+  images: Upload[];
 };
 
-const UpdateCategoryForm = ({ category }: Props) => {
+const UpdateCategoryForm = ({ category, images }: Props) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: category,
+    defaultValues: {
+      name: category.name,
+      images: category.images.map((image) => Number(image.id)),
+    },
   });
   const [loading, setLoading] = useState(false);
 
@@ -65,6 +71,7 @@ const UpdateCategoryForm = ({ category }: Props) => {
               </FormItem>
             )}
           />
+          <SelectImages name="images" images={images} />
           <div className="flex items-center space-x-2">
             <SubmitButton text="Submit" loading={loading} />
             <BackButton />
