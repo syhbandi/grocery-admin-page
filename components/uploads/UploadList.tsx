@@ -6,12 +6,13 @@ import { Button } from "../ui/button";
 import { FiEye, FiTrash } from "react-icons/fi";
 import DeleteImageButton from "./DeleteButton";
 import Link from "next/link";
+import ImageView from "./ImageView";
 
 type Response = {
   data: Upload[];
 };
 
-const getUploads = async (): Promise<Response> => {
+export const getUploads = async (): Promise<Response> => {
   try {
     const session = await auth();
     const res = await fetch(`${process.env.API_URL}/uploads`, {
@@ -35,15 +36,7 @@ const UploadList = async () => {
             key={data.id}
             className="flex items-center justify-center rounded-lg border border-neutral-300 h-[200px] p-3 group/item relative overflow-hidden"
           >
-            <div className="h-full w-full relative rounded">
-              <Image
-                alt={`upload images #${data.id}`}
-                src={`${process.env.ASSETS_URL}/${data.url}`}
-                fill
-                sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
-                className="object-contain"
-              />
-            </div>
+            <ImageView image={data} />
             <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center invisible group-hover/item:visible backdrop-blur-sm backdrop-brightness-75 space-y-2">
               <Link href={`/dashboard/uploads/${data.id}`} className="w-1/3">
                 <Button variant={"secondary"} className="w-full">
