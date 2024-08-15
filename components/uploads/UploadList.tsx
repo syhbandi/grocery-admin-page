@@ -1,9 +1,8 @@
 import { auth } from "@/auth";
 import { Upload } from "@/lib/types";
-import Image from "next/image";
 import { Alert } from "../ui/alert";
 import { Button } from "../ui/button";
-import { FiEye, FiTrash } from "react-icons/fi";
+import { FiEye } from "react-icons/fi";
 import DeleteImageButton from "./DeleteButton";
 import Link from "next/link";
 import ImageView from "./ImageView";
@@ -38,12 +37,6 @@ const UploadList = async () => {
           >
             <ImageView image={data} />
             <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center invisible group-hover/item:visible backdrop-blur-sm backdrop-brightness-75 space-y-2">
-              <Link href={`/dashboard/uploads/${data.id}`} className="w-1/3">
-                <Button variant={"secondary"} className="w-full">
-                  <FiEye className="mr-1" />
-                  View
-                </Button>
-              </Link>
               <DeleteImageButton id={data.id} />
             </div>
           </div>

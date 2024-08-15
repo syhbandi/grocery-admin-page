@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Category, Upload } from "@/lib/types";
 import Image from "next/image";
 
-const getImage = async (id: string): Promise<{ data: Upload }> => {
+export const getImage = async (id: string): Promise<{ data: Upload }> => {
   try {
     const session = await auth();
     const res = await fetch(`${process.env.API_URL}/uploads/${id}`, {
