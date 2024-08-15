@@ -10,10 +10,11 @@ import {
 } from "@/components/ui/table";
 import { Product } from "@/lib/types";
 import Link from "next/link";
-import { FiDelete, FiEdit2, FiTrash } from "react-icons/fi";
+import { FiDelete, FiEdit2, FiEye, FiTrash } from "react-icons/fi";
 import CustomPagination from "../Pagination";
 import DeleteProductButton from "./DeleteButton";
 import { currencyFormat, getRowNumber, numberFormat } from "@/lib/utils";
+import Image from "next/image";
 
 type Props = {
   page?: string;
@@ -65,6 +66,7 @@ const ProductsTable = async ({ page, size, search }: Props) => {
             <TableHead>Price</TableHead>
             <TableHead>Stock</TableHead>
             <TableHead>Unit</TableHead>
+            <TableHead>Images</TableHead>
             <TableHead>Actions</TableHead>
           </TableRow>
         </TableHeader>
@@ -96,6 +98,18 @@ const ProductsTable = async ({ page, size, search }: Props) => {
                 <TableCell>{currencyFormat(product.price)}</TableCell>
                 <TableCell>{numberFormat(product.stock)}</TableCell>
                 <TableCell>{product.unit}</TableCell>
+                <TableCell>
+                  {product.images.map((image) => (
+                    <Image
+                      key={image.id}
+                      alt="product image"
+                      src={`${process.env.ASSETS_URL}/${image.url}`}
+                      width={50}
+                      height={50}
+                      className="rounded-full object-cover"
+                    />
+                  ))}
+                </TableCell>
                 <TableCell className="space-x-2">
                   <Link href={`/dashboard/products/${product.id}/update`}>
                     <Button size={"icon"} variant={"outline"}>
