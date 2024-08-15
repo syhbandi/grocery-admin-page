@@ -66,7 +66,7 @@ const SelectImages = ({ images, name }: Props) => {
           <DialogHeader>
             <DialogTitle>Select Images</DialogTitle>
           </DialogHeader>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-h-[600px] overflow-y-auto p-2">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-h-[400px] overflow-y-auto p-2">
             {images?.map((image) => (
               <div
                 key={image.id}
