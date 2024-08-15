@@ -13,6 +13,7 @@ import { Button } from "../ui/button";
 import { FiEdit2 } from "react-icons/fi";
 import { getRowNumber } from "@/lib/utils";
 import DeleteCategoryButton from "./DeleteButton";
+import Image from "next/image";
 
 type Props = {
   page?: string;
@@ -58,8 +59,9 @@ const CategoriesTable = async ({ page, search, size }: Props) => {
       <Table className="border border-neutral-300">
         <TableHeader>
           <TableRow>
-            <TableHead>Id</TableHead>
-            <TableHead>name</TableHead>
+            <TableHead>#</TableHead>
+            <TableHead>Name</TableHead>
+            <TableHead>Images</TableHead>
             <TableHead>actions</TableHead>
           </TableRow>
         </TableHeader>
@@ -75,6 +77,21 @@ const CategoriesTable = async ({ page, search, size }: Props) => {
                   )}
                 </TableCell>
                 <TableCell>{category.name}</TableCell>
+                <TableCell>
+                  {category.images.map((image) => (
+                    <Link
+                      key={image.id}
+                      href={`/dashboard/uploads/${image.id}`}
+                    >
+                      <Image
+                        src={`${process.env.ASSETS_URL}/${image.url}`}
+                        alt="image"
+                        width={50}
+                        height={50}
+                      />
+                    </Link>
+                  ))}
+                </TableCell>
                 <TableCell className="space-x-2">
                   <Link href={`/dashboard/categories/${category.id}/update`}>
                     <Button size={"icon"} variant={"outline"}>
@@ -87,7 +104,7 @@ const CategoriesTable = async ({ page, search, size }: Props) => {
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={3} className="text-center text-foreground">
+              <TableCell colSpan={4} className="text-center text-foreground">
                 No data found
               </TableCell>
             </TableRow>

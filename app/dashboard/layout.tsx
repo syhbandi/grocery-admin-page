@@ -3,13 +3,7 @@ import SideBar from "@/components/SideBar";
 import NextTopLoader from "nextjs-toploader";
 import React from "react";
 
-const DashboardLayout = ({
-  children,
-  modal,
-}: {
-  children: React.ReactNode;
-  modal: React.ReactNode;
-}) => {
+const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <NextTopLoader color="#16a34a" showSpinner={false} />
@@ -18,8 +12,6 @@ const DashboardLayout = ({
         <Navbar />
         <div className="p-5">{children}</div>
       </div>
-      {modal}
-      <div id="modal-root" />
     </>
   );
 };
