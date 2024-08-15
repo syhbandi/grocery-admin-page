@@ -1,6 +1,7 @@
 import CreateProductForm from "@/components/products/Create-form";
 import Header from "@/components/Header";
 import { Category } from "@/lib/types";
+import { getUploads } from "@/components/uploads/UploadList";
 
 export const getCategories = async (): Promise<{ data: Category[] }> => {
   try {
@@ -15,11 +16,11 @@ export const getCategories = async (): Promise<{ data: Category[] }> => {
 
 const CreateProductPage = async () => {
   const { data: categories } = await getCategories();
-  console.log(categories);
+  const { data: images } = await getUploads();
   return (
     <div>
       <Header title="Create Product" />
-      <CreateProductForm categories={categories} />
+      <CreateProductForm categories={categories} images={images} />
     </div>
   );
 };

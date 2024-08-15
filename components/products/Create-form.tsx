@@ -20,10 +20,12 @@ import { z } from "zod";
 import SubmitButton from "../SubmitButton";
 import { useToast } from "../ui/use-toast";
 import SelectCategory from "./SelectCategory";
-import { Category } from "@/lib/types";
+import { Category, Upload } from "@/lib/types";
+import SelectProductImages from "./SelectImages";
 
 type Props = {
   categories: Category[];
+  images: Upload[];
 };
 
 const schema = z.object({
@@ -39,9 +41,10 @@ const schema = z.object({
     invalid_type_error: "Invalid Stock",
   }),
   categories: z.coerce.number().array(),
+  images: z.coerce.number().array(),
 });
 
-const CreateProductForm = ({ categories }: Props) => {
+const CreateProductForm = ({ categories, images }: Props) => {
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -51,6 +54,7 @@ const CreateProductForm = ({ categories }: Props) => {
       price: 0,
       unit: "",
       categories: [],
+      images: [],
     },
   });
   const categoryOptions = categories.map((category) => ({
@@ -83,7 +87,7 @@ const CreateProductForm = ({ categories }: Props) => {
   };
 
   return (
-    <Card className="mt-5 w-full lg:w-1/2">
+    <Card className="mt-5 w-full md:w-1/2">
       <CardContent className="p-6">
         <Form {...form}>
           <form
@@ -164,6 +168,7 @@ const CreateProductForm = ({ categories }: Props) => {
               options={categoryOptions}
               placeholder="Select Categories"
             />
+            <SelectProductImages images={images} name="images" />
             <div className="flex items-center space-x-3">
               <SubmitButton text="Submit" loading={loading} />
               <BackButton />

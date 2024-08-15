@@ -1,5 +1,5 @@
 "use client";
-import { Category, Product } from "@/lib/types";
+import { Category, Product, Upload } from "@/lib/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -19,10 +19,12 @@ import SubmitButton from "../SubmitButton";
 import BackButton from "../BackButton";
 import { updateProduct } from "@/actions/ProductActions";
 import SelectCategory from "./SelectCategory";
+import SelectImages from "./SelectImages";
 
 type Props = {
   product: Product;
   categories: Category[];
+  images: Upload[];
 };
 
 const schema = z.object({
@@ -38,15 +40,17 @@ const schema = z.object({
     invalid_type_error: "Invalid Stock",
   }),
   categories: z.coerce.number().array(),
+  images: z.coerce.number().array(),
 });
 
-const UpdateProductForm = ({ product, categories }: Props) => {
+const UpdateProductForm = ({ product, categories, images }: Props) => {
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
       ...product,
       description: product.description ?? "",
       categories: product.categories.map((category) => Number(category.id)),
+      images: product.images.map((image) => Number(image.id)),
     },
   });
 
@@ -155,6 +159,7 @@ const UpdateProductForm = ({ product, categories }: Props) => {
           name="categories"
           placeholder="Select Categories"
         />
+        <SelectImages name="images" images={images} />
         <div className="flex items-center space-x-3">
           <SubmitButton text="Submit" loading={loading} />
           <BackButton />
