@@ -38,6 +38,11 @@ const SelectImages = ({ images, name }: Props) => {
     setValue(name, newSelectedImages);
   };
 
+  const onClear = () => {
+    setSelectedImages([]);
+    setValue(name, []);
+  };
+
   useEffect(() => {
     register(name);
   }, [register, name]);
@@ -80,8 +85,15 @@ const SelectImages = ({ images, name }: Props) => {
               </div>
             ))}
           </div>
-          <DialogFooter className="items-center md:justify-between">
-            {selectedImages.length} image(s) selected
+          <DialogFooter className="items-center">
+            <Button
+              type="button"
+              variant={"destructive"}
+              onClick={onClear}
+              disabled={!selectedImages.length}
+            >
+              Clear
+            </Button>
             <DialogClose asChild>
               <Button type="button" variant={"outline"}>
                 Close
