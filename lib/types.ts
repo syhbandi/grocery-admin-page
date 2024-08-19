@@ -29,3 +29,21 @@ export type Upload = {
   id: string;
   url: string;
 };
+
+export type OrderItem = {
+  id: string;
+  product_id: string;
+  quantity: string;
+  price: string;
+  product: Product;
+};
+
+export type Order = {
+  id: string;
+  user_id: string;
+  total_price: string;
+  status: string;
+  items: OrderItem[];
+  date: string;
+  user: User;
+};

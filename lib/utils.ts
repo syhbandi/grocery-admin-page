@@ -49,6 +49,13 @@ export const numberFormat = (value: number) => {
   return new Intl.NumberFormat("id", { style: "decimal" }).format(value);
 };
 
+export const dateFormat = (value: Date) => {
+  return new Intl.DateTimeFormat("id", {
+    dateStyle: "short",
+    timeStyle: "short",
+  }).format(value);
+};
+
 export const getRowNumber = (
   currentPage: number,
   perPage: number,
