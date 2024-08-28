@@ -14,6 +14,7 @@ import { FiEye } from "react-icons/fi";
 import CustomPagination from "../Pagination";
 import { auth } from "@/auth";
 import { Badge } from "../ui/badge";
+import OrderStatus from "./OrderStatusBadge";
 
 type Props = {
   page?: string;
@@ -83,7 +84,7 @@ const OrdersTable = async ({ page, size, search }: Props) => {
                   {currencyFormat(Number(order.total_price))}
                 </TableCell>
                 <TableCell className="space-x-2">
-                  <OrderStatus order={order} />
+                  <OrderStatus status={order.status} />
                 </TableCell>
                 <TableCell className="space-x-2">
                   <Link href={`/dashboard/orders/${order.id}`}>
@@ -109,18 +110,6 @@ const OrdersTable = async ({ page, size, search }: Props) => {
       </div>
     </>
   );
-};
-
-const OrderStatus = ({ order }: { order: Order }) => {
-  if (order.status === "completed") return <Badge>• {order.status}</Badge>;
-  if (order.status === "pending")
-    return (
-      <Badge className="bg-warning text-warning-foreground">
-        • {order.status}
-      </Badge>
-    );
-  if (order.status === "cancelled")
-    return <Badge variant={"destructive"}>• {order.status}</Badge>;
 };
 
 export default OrdersTable;
