@@ -21,9 +21,9 @@ const OrdersPage = ({ searchParams }: Props) => {
       <Header title="Orders" />
       <Card>
         <CardHeader className="flex-row space-y-0 space-x-2">
-          <FilterButton />
-          <SortButton />
           <Search placeholder="Search User" />
+          <SortButton />
+          <FilterButton />
         </CardHeader>
         <CardContent>
           <Suspense fallback={"loading"}>

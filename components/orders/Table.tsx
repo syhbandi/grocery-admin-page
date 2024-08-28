@@ -35,7 +35,7 @@ const getOrders = async (
   search?: string
 ): Promise<Response> => {
   const session = await auth();
-  const url = `${process.env.API_URL}/orders/all`;
+  const url = `${process.env.API_URL}/orders`;
   const params = new URLSearchParams();
 
   console.log(url);
@@ -66,7 +66,7 @@ const OrdersTable = async ({ page, size, search }: Props) => {
             <TableHead>Date</TableHead>
             <TableHead>Total</TableHead>
             <TableHead>Status</TableHead>
-            <TableHead>Items</TableHead>
+            <TableHead>Details</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -112,15 +112,15 @@ const OrdersTable = async ({ page, size, search }: Props) => {
 };
 
 const OrderStatus = ({ order }: { order: Order }) => {
-  if (order.status === "completed") return <Badge>{order.status}</Badge>;
+  if (order.status === "completed") return <Badge>• {order.status}</Badge>;
   if (order.status === "pending")
     return (
       <Badge className="bg-warning text-warning-foreground">
-        {order.status}
+        • {order.status}
       </Badge>
     );
   if (order.status === "cancelled")
-    return <Badge variant={"destructive"}>{order.status}</Badge>;
+    return <Badge variant={"destructive"}>• {order.status}</Badge>;
 };
 
 export default OrdersTable;
