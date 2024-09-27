@@ -30,6 +30,7 @@ const Search = ({ placeholder }: Props) => {
         className="outline-none flex-1 peer placeholder:text-sm"
         onChange={(e) => handleSearch(e.target.value)}
         placeholder={placeholder}
+        defaultValue={searchParams.get("search")?.toString()}
       />
       <FiSearch className="text-neutral-300 peer-focus:text-primary" />
     </div>
