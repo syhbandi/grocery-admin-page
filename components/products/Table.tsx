@@ -122,7 +122,7 @@ const ProductsTable = async ({ page, size, search }: Props) => {
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={7} className="text-center">
+              <TableCell colSpan={8} className="text-center">
                 No data Found
               </TableCell>
             </TableRow>
