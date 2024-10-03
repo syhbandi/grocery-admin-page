@@ -22,6 +22,7 @@ import { useToast } from "../ui/use-toast";
 import SelectCategory from "./SelectCategory";
 import { Category, Upload } from "@/lib/types";
 import SelectProductImages from "./SelectImages";
+import InputImages from "../InputImages";
 
 type Props = {
   categories: Category[];
@@ -168,7 +169,8 @@ const CreateProductForm = ({ categories, images }: Props) => {
               options={categoryOptions}
               placeholder="Select Categories"
             />
-            <SelectProductImages images={images} name="images" />
+            {/* <SelectProductImages images={images} name="images" /> */}
+            <InputImages name="images" />
             <div className="flex items-center space-x-3">
               <SubmitButton text="Submit" loading={loading} />
               <BackButton />

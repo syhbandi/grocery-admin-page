@@ -1,12 +1,11 @@
 "use server";
 
 import { auth } from "@/auth";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 const PATH = "/dashboard/uploads";
 
-export const upload = async (formData: FormData) => {
+export const upload = async (formData: FormData, isUploadPage?: boolean) => {
   const session = await auth();
   const res = await fetch(`${process.env.API_URL}/uploads`, {
     method: "post",
@@ -18,8 +17,9 @@ export const upload = async (formData: FormData) => {
 
   if (!res.ok) throw new Error("Failed to upload image");
 
-  revalidatePath(PATH);
-  redirect(PATH);
+  if (isUploadPage) revalidatePath(PATH);
+
+  return await res.json();
 };
 
 export const deleteImage = async (id: string) => {
@@ -34,5 +34,4 @@ export const deleteImage = async (id: string) => {
   if (!res.ok) throw new Error("Failed to delete image");
 
   revalidatePath(PATH);
-  redirect(PATH);
 };
