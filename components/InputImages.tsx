@@ -10,12 +10,16 @@ import { toast } from "./ui/use-toast";
 
 type Props = {
   name: string;
+  image?: {
+    id: string;
+    url: string;
+  };
 };
 
-const InputImages = ({ name }: Props) => {
-  const { register, setValue, getValues } = useFormContext();
-  const [uploadedImage, setUploadedImage] = useState<any>(null);
-  const [loading, setLoading] = useState(false);
+const InputImages = ({ name, image }: Props) => {
+  const { register, setValue } = useFormContext();
+  const [uploadedImage, setUploadedImage] = useState<any>(image);
+  const [loading, setLoading] = useState(true);
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const image = e.target.files?.item(0);
@@ -56,6 +60,7 @@ const InputImages = ({ name }: Props) => {
       setLoading(true);
       await deleteImage(uploadedImage.id);
       setUploadedImage(null);
+      setValue(name, []);
     } catch (error) {
       toast({
         title: "Oops",
@@ -77,16 +82,16 @@ const InputImages = ({ name }: Props) => {
         <FormLabel>Images</FormLabel>
         <div className="relative border border-dashed border-neutral-200 rounded-lg bg-white h-40 flex items-center justify-center gap-5">
           {loading ? (
-            <AiOutlineLoading3Quarters className="text-lg text-primary-foreground animate-spin" />
+            <AiOutlineLoading3Quarters className="text-4xl text-primary animate-spin" />
           ) : uploadedImage ? (
             <>
               <Image
                 src={`${process.env.NEXT_PUBLIC_ASSETS_URL}/${uploadedImage.url}`}
-                loading="lazy"
                 width={160}
                 height={160}
                 className="object-contain h-40 w-40"
                 alt={uploadedImage.id}
+                priority
               />
               <div className="absolute top-0 right-0">
                 <button
