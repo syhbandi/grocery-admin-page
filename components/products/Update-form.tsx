@@ -19,12 +19,11 @@ import SubmitButton from "../SubmitButton";
 import BackButton from "../BackButton";
 import { updateProduct } from "@/actions/ProductActions";
 import SelectCategory from "./SelectCategory";
-import SelectImages from "./SelectImages";
+import InputImages from "../InputImages";
 
 type Props = {
   product: Product;
   categories: Category[];
-  images: Upload[];
 };
 
 const schema = z.object({
@@ -43,7 +42,7 @@ const schema = z.object({
   images: z.coerce.number().array(),
 });
 
-const UpdateProductForm = ({ product, categories, images }: Props) => {
+const UpdateProductForm = ({ product, categories }: Props) => {
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -159,7 +158,7 @@ const UpdateProductForm = ({ product, categories, images }: Props) => {
           name="categories"
           placeholder="Select Categories"
         />
-        <SelectImages name="images" images={images} />
+        <InputImages name="images" image={product.images[0] || undefined} />
         <div className="flex items-center space-x-3">
           <SubmitButton text="Submit" loading={loading} />
           <BackButton />

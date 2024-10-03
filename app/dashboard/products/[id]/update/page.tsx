@@ -26,16 +26,11 @@ const getProduct = async (id: string): Promise<{ data: Product }> => {
 const UpdateProductPage = async ({ params }: Props) => {
   const { data: product } = await getProduct(params.id);
   const { data: categories } = await getCategories();
-  const { data: images } = await getUploads();
   return (
     <>
       <Header title="Update Product" />
       <Card className="p-6 w-full lg:w-1/2">
-        <UpdateProductForm
-          product={product}
-          categories={categories}
-          images={images}
-        />
+        <UpdateProductForm product={product} categories={categories} />
       </Card>
     </>
   );
