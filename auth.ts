@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import credentials from "next-auth/providers/credentials";
 import { JWT } from "next-auth/jwt";
+import { User } from "./lib/types";
 
 const fetchUser = async ({
   email,
@@ -35,17 +36,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           password: credentials.password,
         });
 
-        if (!user || user?.user?.role !== "admin") {
-          console.log("error");
+        if (!user) {
           return null;
         }
 
         return {
-          id: user.user.id,
-          username: user.user.username,
-          email: user.user.email,
-          full_name: user.user.full_name,
-          role: user.user.role,
+          // id: user.user.id,
+          // username: user.user.username,
+          // email: user.user.email,
+          // full_name: user.user.full_name,
+          // role: user.user.role,
+          ...user.user,
           token: user.token,
         };
       },
