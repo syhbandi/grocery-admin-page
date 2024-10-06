@@ -1,6 +1,5 @@
 import UpdateCategoryForm from "@/components/categories/Update-form";
 import Header from "@/components/Header";
-import { getUploads } from "@/components/uploads/UploadList";
 import { Category } from "@/lib/types";
 
 type Props = {
@@ -28,11 +27,10 @@ const getCategory = async (id: string): Promise<Response> => {
 const UpdateCategoryPage = async ({ params }: Props) => {
   const { id } = params;
   const { data: category } = await getCategory(id);
-  const { data: images } = await getUploads();
   return (
     <>
       <Header title="Update Category" />
-      <UpdateCategoryForm category={category} images={images} />
+      <UpdateCategoryForm category={category} />
     </>
   );
 };
