@@ -19,7 +19,7 @@ type Props = {
 const InputImages = ({ name, image }: Props) => {
   const { register, setValue } = useFormContext();
   const [uploadedImage, setUploadedImage] = useState<any>(image);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const image = e.target.files?.item(0);
