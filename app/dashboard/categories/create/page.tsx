@@ -7,7 +7,7 @@ const CreateCategoriesPage = async () => {
   return (
     <>
       <Header title="Create Category" />
-      <CreateCategoryForm images={images} />
+      <CreateCategoryForm />
     </>
   );
 };

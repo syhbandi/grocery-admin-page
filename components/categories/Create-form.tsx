@@ -12,17 +12,13 @@ import { useState } from "react";
 import { createCategory } from "@/actions/CategoryActions";
 import { toast } from "../ui/use-toast";
 import { Upload } from "@/lib/types";
-import SelectImages from "../products/SelectImages";
-
-type Props = {
-  images: Upload[];
-};
+import InputImages from "../InputImages";
 
 const formSchema = z.object({
   name: z.string().min(1, "Name required"),
   images: z.coerce.number().array(),
 });
-const CreateCategoryForm = ({ images }: Props) => {
+const CreateCategoryForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -69,7 +65,7 @@ const CreateCategoryForm = ({ images }: Props) => {
               </FormItem>
             )}
           />
-          <SelectImages name="images" images={images} />
+          <InputImages name="images" />
           <div className="flex items-center space-x-2">
             <SubmitButton text="Submit" loading={loading} />
             <BackButton />
