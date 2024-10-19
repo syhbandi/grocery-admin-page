@@ -80,7 +80,7 @@ const InputImages = ({ name, image }: Props) => {
     <>
       <FormItem className="flex flex-col">
         <FormLabel>Images</FormLabel>
-        <div className="relative border border-dashed border-neutral-200 rounded-lg bg-white h-40 flex items-center justify-center gap-5">
+        <div className="relative border border-dashed rounded-lg h-40 flex items-center justify-center gap-5">
           {loading ? (
             <AiOutlineLoading3Quarters className="text-4xl text-primary animate-spin" />
           ) : uploadedImage ? (
