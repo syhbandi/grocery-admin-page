@@ -56,7 +56,7 @@ const CategoriesTable = async ({ page, search, size }: Props) => {
   const data = await getCategories(page, size, search);
   return (
     <>
-      <Table className="border border-neutral-300">
+      <Table className="border ">
         <TableHeader>
           <TableRow>
             <TableHead>#</TableHead>

@@ -33,7 +33,7 @@ const UploadList = async () => {
         data.map((data) => (
           <div
             key={data.id}
-            className="flex items-center justify-center rounded-lg border border-neutral-300 h-[200px] p-3 group/item relative overflow-hidden"
+            className="flex items-center justify-center rounded-lg border h-[200px] p-3 group/item relative overflow-hidden"
           >
             <ImageView image={data} />
             <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center invisible group-hover/item:visible backdrop-blur-sm backdrop-brightness-75 space-y-2">

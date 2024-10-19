@@ -59,7 +59,7 @@ const OrdersTable = async ({ page, size, search }: Props) => {
   const { data: orders, meta } = await getOrders(page, size, search);
   return (
     <>
-      <Table className="border border-neutral-200">
+      <Table className="border">
         <TableHeader>
           <TableRow>
             <TableHead>#</TableHead>
