@@ -1,11 +1,13 @@
 import { auth } from "@/auth";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { ModeToggle } from "./ToggleTheme";
 
 const Navbar = async () => {
   const session = await auth();
   return (
     <div className="flex items-center px-10 py-4">
       <div className="ml-auto flex items-center gap-3">
+        <ModeToggle />
         <Avatar className="h-9 w-9">
           <AvatarImage src="https://github.com/shadcn.png" />
           <AvatarFallback>A</AvatarFallback>

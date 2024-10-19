@@ -22,12 +22,12 @@ const Search = ({ placeholder }: Props) => {
     replace(`${pathname}?${params.toString()}`);
   }, 300);
   return (
-    <div className="h-9 px-3 flex-1 flex items-center space-x-2 border border-neutral-300 rounded-lg focus-within:border-primary">
+    <div className="h-9 px-3 flex-1 flex items-center space-x-2 border rounded-lg focus-within:border-primary">
       <input
         id="search"
         name="search"
         type="search"
-        className="outline-none flex-1 peer placeholder:text-sm"
+        className="outline-none flex-1 peer placeholder:text-sm bg-transparent"
         onChange={(e) => handleSearch(e.target.value)}
         placeholder={placeholder}
         defaultValue={searchParams.get("search")?.toString()}

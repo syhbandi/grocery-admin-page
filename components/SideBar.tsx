@@ -4,7 +4,7 @@ import { ScrollArea } from "./ui/scroll-area";
 
 const SideBar = () => {
   return (
-    <div className="hidden lg:block fixed top-0 left-0 w-64 h-screen bg-neutral-50 shadow-lg shadow-neutral-200">
+    <div className="hidden lg:block fixed top-0 left-0 w-64 h-screen bg-background shadow-lg border-r">
       <ScrollArea className="h-full">
         <div className="text-3xl font-semibold text-green-700 text-center py-5">
           Grosir
